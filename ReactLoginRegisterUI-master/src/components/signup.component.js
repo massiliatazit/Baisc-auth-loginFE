@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GoogleButton from 'react-google-button'
 
 export default class SignUp extends Component {
     render() {
@@ -30,6 +31,9 @@ export default class SignUp extends Component {
                 <p className="forgot-password text-right">
                     Already registered <a href="#">log in?</a>
                 </p>
+                <GoogleButton className="text-center mt-3 ml-5"
+  onClick={() => {this.props.history.push("http://localhost:5000/users/googleLogin") }}
+/>
             </form>
         );
     }

@@ -30,7 +30,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
+            <Route path="/sign-up" render={(props)=><SignUp {...props}/>} />
           </Switch>
         </div>
       </div>
