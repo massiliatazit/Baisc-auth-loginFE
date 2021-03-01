@@ -1,7 +1,30 @@
 import React, { Component } from "react";
-
+import axios from "axios";
+import GoogleButton from 'react-google-button'
+import {Link} from "react-router-dom"
 export default class Login extends Component {
+    state = {
+        email:"",
+        password:"",
+        
+    }
+  
+     Login= ()=>{
+        try { const res =  axios.post("http://localhost:5000/users/login",data, {headers:headers, withCredentials:true})
+        console.log(res.data)
+
+          
+        localStorage.setItem("accessToken", res.data.accessToken) 
+        
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+
+    }
     render() {
+      
         return (
             <form>
 
@@ -9,12 +32,12 @@ export default class Login extends Component {
 
                 <div className="form-group">
                     <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Enter email" onChange={(event)=>this.setState({email: event.target.value})} />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" placeholder="Enter password" onChange={(event)=>this.setState({password: event.target.value})}/>
                 </div>
 
                 <div className="form-group">
@@ -28,6 +51,12 @@ export default class Login extends Component {
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
+                <Link to = "http://localhost:5000/users/googleLogin">
+                <GoogleButton className="text-center mt-3 ml-5"
+//   onClick={() => {this.props.history.push("http://localhost:5000/users/googleLogin") }}
+
+/>
+</Link>
             </form>
         );
     }
